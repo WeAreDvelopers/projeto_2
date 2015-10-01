@@ -1,0 +1,13 @@
+body{
+	padding-top: 40px;
+}
+.list-order{
+	float: right;
+	list-style: none;
+}
+ul.list-order li{
+	display: inline-block;
+}
+.container h2{
+	margin-top: 0;
+}
