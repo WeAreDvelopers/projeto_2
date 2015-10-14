@@ -28,9 +28,9 @@ function caminho(){
 
 
 
-for($i=1; $i<= 10; $i++){
-$cliente = new Clientes();
-$cliente->setNome("Cliente " . $i)
+for($i=1; $i< 10; $i++){
+${"cliente".$i} = new Clientes();
+${"cliente".$i}->setNome("Cliente " . $i)
 		->setCpf("123.456.789-".$i)
 		->setEmail("cliente".$i."@teste.com.br")
 		->setEndereco("Rua Teste ".$i)
@@ -40,19 +40,7 @@ $cliente->setNome("Cliente " . $i)
 		->setCidade("Cidade ".$i)
 		->setEstado("Estado ".$i)
 		->setCep("12.200-00".$i);
-
-	$arrayClientes[] = array(
-		$cliente->getNome(),
-		$cliente->getCpf(),
-		$cliente->getEmail(),
-		$cliente->getEndereco(),
-		$cliente->getNumero(),
-		$cliente->getComplemento(),
-		$cliente->getBairro(),
-		$cliente->getCidade(),
-		$cliente->getEstado(),
-		$cliente->getCep(),
-	);
+		$arrayClientes[$i] = ${"cliente".$i};
 }
 function ordenaArray($arrayClientes){
 	$rota = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);

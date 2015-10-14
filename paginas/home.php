@@ -16,11 +16,12 @@
 	 	<td>Ações</td>
 	 </tr>
 	<?php 
+
 foreach (ordenaArray($arrayClientes) as $key => $val) {
 	  ?>
 	 <tr>
 	 	<td><?= $key?></td>
-	 	<td><?= $val[0]?></td>
+	 	<td><?= $val->getNome();?></td>
 	 	<td><a href="visualizar/<?= $key?>"><span class="glyphicon glyphicon-eye-open"></span>	</a></td>
 	 </tr>
 	 <?php 
