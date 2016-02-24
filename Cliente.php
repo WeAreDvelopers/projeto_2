@@ -1,7 +1,10 @@
 <?php 
-class Clientes{
+require_once "interfaces/EnderecoCobranca.php";
+require_once "interfaces/Classificacao.php";
+// Classe abstrata nõa pode ser instanciada
+abstract class Clientes implements EnderecoCobranca,Classificacao{
+	private $Id;
 	private $Nome;
-	private $Cpf;
 	private $Email;
 	private $Endereco;
 	private $Numero;
@@ -11,6 +14,26 @@ class Clientes{
 	private $Estado;
 	private $Cep;
 
+
+	private $EnderecoCobranca;
+	private $NumeroCobranca;
+	private $ComplementoCobranca;
+	private $BairroCobranca;
+	private $CidadeCobranca;
+	private $EstadoCobranca;
+	private $CepCobranca;
+
+
+	private $Classificacao;
+
+	public function setId ($Id){
+		$this->id = $Id;
+		return $this;
+	}
+	public function getId(){
+		return $this->id;
+	}
+
 	public function setNome ($Nome){
 		$this->nome = $Nome;
 		return $this;
@@ -18,13 +41,7 @@ class Clientes{
 	public function getNome(){
 		return $this->nome;
 	}
-	public function setCpf ($Cpf){
-		$this->cpf = $Cpf;
-		return $this;
-	}
-	public function getCpf(){
-		return $this->cpf;
-	}
+	
 	public function setEmail ($Email){
 		$this->email = $Email;
 		return $this;
@@ -80,6 +97,70 @@ class Clientes{
 	}
 	public function getCep (){
 		return $this->cep;
+	}
+
+/* ------------------------ENDEREÇO DE COBRANÇA-------------------------  */
+
+	public function setEnderecoCobranca ($EnderecoCobranca){
+		$this->enderecoCobranca = $EnderecoCobranca;
+		return $this;
+	}
+	public function getEnderecoCobranca (){
+		return $this->enderecoCobranca;
+	}
+	public function setNumeroCobranca ($NumeroCobranca){
+		$this->numeroCobranca = $NumeroCobranca;
+		return $this;
+	}
+	public function getNumeroCobranca (){
+		return $this->numeroCobranca;
+	}
+	public function setComplementoCobranca ($ComplementoCobranca){
+		$this->complementoCobranca = $ComplementoCobranca;
+		return $this;
+	}
+	public function getComplementoCobranca (){
+		return $this->complementoCobranca;
+	}
+	public function setBairroCobranca ($BairroCobranca){
+		$this->bairroCobranca = $BairroCobranca;
+		return $this;
+	}
+	public function getBairroCobranca (){
+		return $this->bairroCobranca;
+	}
+	public function setCidadeCobranca ($CidadeCobranca){
+		$this->cidadeCobranca = $CidadeCobranca;
+		return $this;
+	}
+	public function getCidadeCobranca (){
+		return $this->cidadeCobranca;
+	}
+	public function setEstadoCobranca ($EstadoCobranca){
+		$this->estadoCobranca = $EstadoCobranca;
+		return $this;
+	}
+	public function getEstadoCobranca (){
+		return $this->estadoCobranca;
+	}
+	public function setCepCobranca ($CepCobranca){
+		$this->cepCobranca = $CepCobranca;
+		return $this;
+	}
+	public function getCepCobranca (){
+		return $this->cepCobranca;
+	}
+
+
+
+/* ------------------------CLASSIFICACAO-------------------------  */
+
+	public function setClassificacao ($Classificacao){
+		$this->classificacao = $Classificacao;
+		return $this;
+	}
+	public function getClassificacao (){
+		return $this->classificacao;
 	}
 
 

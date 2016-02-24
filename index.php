@@ -1,62 +1,55 @@
 <?php 
-require_once "Cliente.php";
+require_once "funcoes.php";
 
-function caminho(){
-	$folder = 'paginas/';
-	$scanDir = array_diff(scandir($folder), array('..', '.'));
+require_once "PessoaFisica.php";
+require_once "PessoaJuridica.php";
 
-	$rota = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-	$patch = explode("/", $rota['path']);
-	
-    $X = array_filter($patch); 
-	$file = end($X);	
-	if(!is_file($folder.$file)){
-		$order = $file;
-		$file = array_pop($X);
-		$file = end($X);
-	}
-	if(is_dir('../'.$file.'/') == true){
-			$file = 'home';	
-	};
-	if(in_array($file.'.php',$scanDir)){
-		return  'paginas/'.$file.'.php';
-	}else{
-		
-		return  'paginas/'.'404.php';
-	}
-};
-
-
-
-for($i=1; $i< 10; $i++){
-${"cliente".$i} = new Clientes();
-${"cliente".$i}->setNome("Cliente " . $i)
-		->setCpf("123.456.789-".$i)
-		->setEmail("cliente".$i."@teste.com.br")
-		->setEndereco("Rua Teste ".$i)
-		->setNumero("10".$i)
-		->setComplemento('Ap 20' .$i)
-		->setBairro('Bairro '.$i)
-		->setCidade("Cidade ".$i)
-		->setEstado("Estado ".$i)
-		->setCep("12.200-00".$i);
-		$arrayClientes[$i] = ${"cliente".$i};
+for ($i=1; $i <= 5; $i++) { 
+	${"cliente".$i} = new PessoaFisica();
+	${"cliente".$i}->setId("$i")
+		->setNome("Cliente $i")
+		->setCPF("111.111.111-$i")
+		->setEmail("cliente$i@dominio$i.com.br")
+		->setEndereco("Rua $i")
+		->setNumero("00$i")
+		->setComplemento("Casa")
+		->setBairro("bairro $i")
+		->setCidade("cidade $i")
+		->setEstado("UF$i")
+		->setCep("00.000-0$i")
+		->setClassificacao(rand(0,5));
+		$arrayClientes[] = ${"cliente".$i};
 }
-function ordenaArray($arrayClientes){
-	$rota = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-	$patch = explode("/", $rota['path']);
-	//PEGO O ULTIMO ELEMENTO VALIDO DO ARRAY E VERIFICO SE ELE NÃO É UMA PASTA
-    $X = array_filter ($patch);  
-	$order = end($X);
 
-	if($order == 'a-z'){
-		ksort($arrayClientes);
-	}
-	if($order == 'z-a'){
-		krsort($arrayClientes);
-	}
-	return $arrayClientes;
+for ($i=6; $i <= 10; $i++) { 
+	${"cliente".$i} = new PessoaJuridica();
+	${"cliente".$i}->setId("$i")
+		->setNome("Cliente $i")
+		->setCNPJ("42.169.422/0001-$i")
+		->setEmail("cliente$i@dominio$i.com.br")
+		->setEndereco("Rua $i")
+		->setNumero("00$i")
+		->setComplemento("Casa")
+		->setBairro("bairro $i")
+		->setCidade("cidade $i")
+		->setEstado("UF$i")
+		->setCep("00.000-0$i")
+		->setClassificacao(rand(0,5))
+		->setEnderecoCobranca("Rua $i")
+		->setNumeroCobranca("00$i")
+		->setComplementoCobranca("Casa")
+		->setBairroCobranca("bairro $i")
+		->setCidadeCobranca("cidade $i")
+		->setEstadoCobranca("UF$i")
+		->setCepCobranca("00.000-0$i");
+		$arrayClientes[] = ${"cliente".$i};
 }
+/*
+CRIAR OS CADASTROS FICTICIOS DOS CLINETES
+*/
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +58,7 @@ function ordenaArray($arrayClientes){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>PDO</title>
 
     <!-- Bootstrap -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
