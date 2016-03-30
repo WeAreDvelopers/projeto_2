@@ -1,8 +1,19 @@
 <?php 
-require_once "funcoes.php";
 
-require_once "PessoaFisica.php";
-require_once "PessoaJuridica.php";
+// CARREGAMENTO ANTIGO
+require_once "funcoes.php";
+//require_once "PessoaFisica.php";
+//require_once "PessoaJuridica.php";
+
+// CARREGAMENTO NOVO
+	/* AUTO LOAD 
+	* CARREGA TODAS AS CLASSES AUTOMATICAMENTE
+	*/
+define('CLASS_DIR','src/');
+set_include_path((get_include_path().PATH_SEPARATOR.CLASS_DIR));
+spl_autoload_register();
+
+use RW940\Cliente\Types;
 
 for ($i=1; $i <= 5; $i++) { 
 	${"cliente".$i} = new PessoaFisica();

@@ -1,8 +1,11 @@
 <?php 
-require_once("Cliente.php");
+//require_once("Cliente.php");
 require_once("interfaces/PJ.php");
 
-class PessoaJuridica extends Clientes implements PJ{
+namespace RW940\Cliente\Types;
+use RW940\Cliente\ClienteAbstract
+
+class PessoaJuridica extends RW940\Cliente\ClienteAbstract implements PJ{
 	protected $cnpj;
 
 	public function getCNPJ(){

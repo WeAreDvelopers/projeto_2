@@ -1,8 +1,12 @@
 <?php 
-require_once "interfaces/EnderecoCobranca.php";
-require_once "interfaces/Classificacao.php";
+namespace RW940\Cliente;
+
+use \interfaces\EnderecoCobranca;
+use \interfaces\Classificacao;
+
+
 // Classe abstrata nõa pode ser instanciada
-abstract class Clientes implements EnderecoCobranca,Classificacao{
+abstract class ClienteAbstract implements EnderecoCobranca,Classificacao{
 	private $Id;
 	private $Nome;
 	private $Email;
