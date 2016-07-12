@@ -1,8 +1,8 @@
 <?php 
 namespace RW940\Cliente;
 
-use \interfaces\EnderecoCobranca;
-use \interfaces\Classificacao;
+use RW940\Cliente\interfaces\EnderecoCobranca;
+use RW940\Cliente\interfaces\Classificacao;
 
 
 // Classe abstrata nõa pode ser instanciada
@@ -103,7 +103,7 @@ abstract class ClienteAbstract implements EnderecoCobranca,Classificacao{
 		return $this->cep;
 	}
 
-/* ------------------------ENDEREÇO DE COBRANÇA-------------------------  */
+	/* ------------------------ENDEREÇO DE COBRANÇA-------------------------  */
 
 	public function setEnderecoCobranca ($EnderecoCobranca){
 		$this->enderecoCobranca = $EnderecoCobranca;
@@ -157,7 +157,7 @@ abstract class ClienteAbstract implements EnderecoCobranca,Classificacao{
 
 
 
-/* ------------------------CLASSIFICACAO-------------------------  */
+	/* ------------------------CLASSIFICACAO-------------------------  */
 
 	public function setClassificacao ($Classificacao){
 		$this->classificacao = $Classificacao;
@@ -169,4 +169,4 @@ abstract class ClienteAbstract implements EnderecoCobranca,Classificacao{
 
 
 }
- ?>
+?>

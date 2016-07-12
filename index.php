@@ -1,23 +1,25 @@
 <?php 
-
-// CARREGAMENTO ANTIGO
-require_once "funcoes.php";
-//require_once "PessoaFisica.php";
-//require_once "PessoaJuridica.php";
-
 // CARREGAMENTO NOVO
 	/* AUTO LOAD 
 	* CARREGA TODAS AS CLASSES AUTOMATICAMENTE
 	*/
-define('CLASS_DIR','src/');
-set_include_path((get_include_path().PATH_SEPARATOR.CLASS_DIR));
-spl_autoload_register();
+	define ('CLASS_DIR','src/');
+	set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
+	spl_autoload_register();
 
-use RW940\Cliente\Types;
+// CARREGAMENTO ANTIGO
+	require_once "funcoes.php";
+//require_once "PessoaFisica.php";
+//require_once "PessoaJuridica.php";
 
-for ($i=1; $i <= 5; $i++) { 
-	${"cliente".$i} = new PessoaFisica();
-	${"cliente".$i}->setId("$i")
+
+
+
+
+	
+	for ($i=1; $i <= 5; $i++) { 
+		${"cliente".$i} = new RW940\Cliente\Types\PessoaFisica();
+		${"cliente".$i}->setId("$i")
 		->setNome("Cliente $i")
 		->setCPF("111.111.111-$i")
 		->setEmail("cliente$i@dominio$i.com.br")
@@ -30,11 +32,11 @@ for ($i=1; $i <= 5; $i++) {
 		->setCep("00.000-0$i")
 		->setClassificacao(rand(0,5));
 		$arrayClientes[] = ${"cliente".$i};
-}
+	}
 
-for ($i=6; $i <= 10; $i++) { 
-	${"cliente".$i} = new PessoaJuridica();
-	${"cliente".$i}->setId("$i")
+	for ($i=6; $i <= 10; $i++) { 
+		${"cliente".$i} = new RW940\Cliente\Types\PessoaJuridica();
+		${"cliente".$i}->setId("$i")
 		->setNome("Cliente $i")
 		->setCNPJ("42.169.422/0001-$i")
 		->setEmail("cliente$i@dominio$i.com.br")
@@ -54,7 +56,7 @@ for ($i=6; $i <= 10; $i++) {
 		->setEstadoCobranca("UF$i")
 		->setCepCobranca("00.000-0$i");
 		$arrayClientes[] = ${"cliente".$i};
-}
+	}
 /*
 CRIAR OS CADASTROS FICTICIOS DOS CLINETES
 */
@@ -64,42 +66,42 @@ CRIAR OS CADASTROS FICTICIOS DOS CLINETES
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>PDO</title>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>PDO</title>
 
-    <!-- Bootstrap -->
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/css/estilo.css">
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+      <![endif]-->
   </head>
   <body>
-	<div class="container">
-		  <div class="row">
+  	<div class="container">
+  		<div class="row">
 
-		   <div class="col-md-8 col-md-offset-2">
-<div class="panel panel-default">
-  <div class="panel-body">
-		<?php include(caminho()); ?>
-  </div>
-</div>
+  			<div class="col-md-8 col-md-offset-2">
+  				<div class="panel panel-default">
+  					<div class="panel-body">
+  						<?php include(caminho()); ?>
+  					</div>
+  				</div>
 
-		   	
-		   	
-		   </div>
-		  </div>
-		</div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+
+  			</div>
+  		</div>
+  	</div>
+  	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  	<!-- Include all compiled plugins (below), or include individual files as needed -->
+  	<script src="/bootstrap/js/bootstrap.min.js"></script>
   </body>
-</html>
+  </html>
