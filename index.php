@@ -36,9 +36,19 @@ foreach ($res as $key => $value) {
 		$clientes[$key]->setId($value['id'])
 		->setNome($value['nome'])
 		->setCNPJ($value['cnpj'])
+		->setEmail($value['email'])
+		->setEndereco($value['endereco'])
+		->setNumero($value['numer'])
+		->setComplemento($value['complemento'])
+		->setBairro($value['bairro'])
+		->setCidade($value['cidade'])
+		->setEstado($value['estado'])
+		->setCep($value['cep'])
 		->setClassificacao($value['classificacao']);
 	}
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +76,7 @@ foreach ($res as $key => $value) {
   			<div class="col-md-8 col-md-offset-2">
   				<div class="panel panel-default">
   					<div class="panel-body">
-  						<?php include(caminho()); ?>
+  						<?php require_once(caminho()); ?>
   					</div>
   				</div>
 

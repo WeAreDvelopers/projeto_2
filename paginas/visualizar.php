@@ -6,9 +6,16 @@
    $file = end($X);
 
    $cliente = $clientes[$file-1];
-   ?>
 
-   <div class="row">
+   if($cliente instanceof PessoaFisica){
+    echo "é pessoa física";
+  }
+  if($cliente instanceof PessoaJuridica){
+    echo "é jurídica";
+  }
+  ?>
+
+  <div class="row">
     <div class="col-md-6"><h3>Dados Cliente</h3></div>
     <div class="col-md-2 pull-right"><a href="/home" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a></div>	
   </div>
@@ -17,7 +24,7 @@
     <div class="col-md-8"><?= $cliente->getNome();?></div>
   </div>
   <div class="row">
-    <div class="col-md-2"><strong>Classificação: <?php echo $cliente->getClassificacao(); ?></strong></div>
+    <div class="col-md-2"><strong>Classificação: </strong></div>
     <div class="col-md-8"><?php for ($i=1; $i <= $clientes[$file]->getClassificacao(); $i++) { 
      echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
    };?></div>
