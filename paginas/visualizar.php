@@ -1,21 +1,15 @@
   	<?php 
    $rota = parse_url("http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
    $patch = explode("/", $rota['path']);
-
+   use RW940\Cliente\Types\PessoaFisica;
    $X = array_filter($patch); 
    $file = end($X);
 
-   $cliente = $clientes[$file-1];
+   $cliente = $clientes[$file];
 
-   if($cliente instanceof PessoaFisica){
-    echo "é pessoa física";
-  }
-  if($cliente instanceof PessoaJuridica){
-    echo "é jurídica";
-  }
-  ?>
+   ?>
 
-  <div class="row">
+   <div class="row">
     <div class="col-md-6"><h3>Dados Cliente</h3></div>
     <div class="col-md-2 pull-right"><a href="/home" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-left"></span> Voltar</a></div>	
   </div>
@@ -25,7 +19,7 @@
   </div>
   <div class="row">
     <div class="col-md-2"><strong>Classificação: </strong></div>
-    <div class="col-md-8"><?php for ($i=1; $i <= $clientes[$file]->getClassificacao(); $i++) { 
+    <div class="col-md-8"><?php for ($i=0; $i <= $clientes[$file]->getClassificacao(); $i++) { 
      echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
    };?></div>
  </div>

@@ -17,13 +17,13 @@ foreach ($res as $key => $value) {
 		//$clientes[] = new PessoaFisica($value['id'],$value['nome'],$value['classificacao'],$value['nome']);
 		
 		
-		$clientes[$key] = new PessoaFisica();
-		$clientes[$key]->setId($value['id'])
+		$clientes[$value['id']] = new PessoaFisica();
+		$clientes[$value['id']]->setId($value['id'])
 		->setNome($value['nome'])
-		->setCPF($cpf['cpf'])
+		->setCPF($value['cpf'])
 		->setEmail($value['email'])
 		->setEndereco($value['endereco'])
-		->setNumero($value['numer'])
+		->setNumero($value['numero'])
 		->setComplemento($value['complemento'])
 		->setBairro($value['bairro'])
 		->setCidade($value['cidade'])
@@ -32,13 +32,13 @@ foreach ($res as $key => $value) {
 		->setClassificacao($value['classificacao']);
 		
 	}else{
-		$clientes[$key] = new PessoaJuridica();
-		$clientes[$key]->setId($value['id'])
+		$clientes[$value['id']] = new PessoaJuridica();
+		$clientes[$value['id']]->setId($value['id'])
 		->setNome($value['nome'])
 		->setCNPJ($value['cnpj'])
 		->setEmail($value['email'])
 		->setEndereco($value['endereco'])
-		->setNumero($value['numer'])
+		->setNumero($value['numero'])
 		->setComplemento($value['complemento'])
 		->setBairro($value['bairro'])
 		->setCidade($value['cidade'])
