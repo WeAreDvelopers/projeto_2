@@ -9,31 +9,31 @@
   		</div>
   	</div>
   	
-   <table class="table table-condensed">
-	 <tr>
-	 	<td>#</td>
-	 	<td>Nome</td>
-	 	<td>Tipo Cliente</td>
-	 	<td>Classificação</td>
+  	<table class="table table-condensed">
+  		<tr>
+  			<td>#</td>
+  			<td>Nome</td>
+  			<td>Tipo Cliente</td>
+  			<td>Classificação</td>
 
-	 	<td>Visualizar</td>
-	 	
-	 </tr>
-	<?php 
+  			<td>Visualizar</td>
+  			
+  		</tr>
+  		<?php 
 
-foreach (ordenaArray($arrayClientes) as $key => $val) {
-	  ?>
-	 <tr>
-	 	<td><?= $val->getId()?></td>
-	 	<td><?= $val->getNome();?></td>
-	 	<td><?= $val instanceof PessoaFisica ? 'PF' : 'PJ';?></td>
-	 	<td><?php for ($i=0; $i <= $val->getClassificacao(); $i++) { 
-	 		echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
-	 	}?></td>
-	 	<td><a href="visualizar/<?= $val->getId()?>"><span class="glyphicon glyphicon-eye-open"></span>	</a></td>
-	 	
-	 </tr>
-	 <?php 
-	 }
-?>
-	</table>
+  		foreach (ordenaArray($clientes) as $key => $val) {
+  			?>
+  			<tr>
+  				<td><?= $val->getId()?></td>
+  				<td><?= $val->getNome();?></td>
+  				<td><?= $val instanceof PessoaFisica ? 'PF' : 'PJ';?></td>
+  				<td><?php for ($i=0; $i <= $val->getClassificacao(); $i++) { 
+  					echo '<span class="glyphicon glyphicon-star" aria-hidden="true"></span>';
+  				}?></td>
+  				<td><a href="visualizar/<?= $val->getId()?>"><span class="glyphicon glyphicon-eye-open"></span>	</a></td>
+  				
+  			</tr>
+  			<?php 
+  		}
+  		?>
+  	</table>

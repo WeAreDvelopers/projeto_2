@@ -1,68 +1,44 @@
 <?php 
-// CARREGAMENTO NOVO
-	/* AUTO LOAD 
-	* CARREGA TODAS AS CLASSES AUTOMATICAMENTE
-	*/
-	define ('CLASS_DIR','src/');
-	set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
-	spl_autoload_register();
+require_once __DIR__ . "/autoload.php";
+require_once "funcoes.php";
+use RW940\Cliente\Types\PessoaFisica;
+use RW940\Cliente\Types\PessoaJuridica;
+use RW940\DB\Database;
 
-// CARREGAMENTO ANTIGO
-	require_once "funcoes.php";
-//require_once "PessoaFisica.php";
-//require_once "PessoaJuridica.php";
+$db = new Database();
+$pdo = $db->connect();
 
 
-
-
-
-	
-	for ($i=1; $i <= 5; $i++) { 
-		${"cliente".$i} = new RW940\Cliente\Types\PessoaFisica();
-		${"cliente".$i}->setId("$i")
-		->setNome("Cliente $i")
-		->setCPF("111.111.111-$i")
-		->setEmail("cliente$i@dominio$i.com.br")
-		->setEndereco("Rua $i")
-		->setNumero("00$i")
-		->setComplemento("Casa")
-		->setBairro("bairro $i")
-		->setCidade("cidade $i")
-		->setEstado("UF$i")
-		->setCep("00.000-0$i")
-		->setClassificacao(rand(0,5));
-		$arrayClientes[] = ${"cliente".$i};
+$stmt = $pdo->prepare("SELECT * FROM clientes");
+$stmt->execute();
+$res = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+foreach ($res as $key => $value) {
+	if($value['cpf'] != ""){
+		//$clientes[] = new PessoaFisica($value['id'],$value['nome'],$value['classificacao'],$value['nome']);
+		
+		
+		$clientes[$key] = new PessoaFisica();
+		$clientes[$key]->setId($value['id'])
+		->setNome($value['nome'])
+		->setCPF($cpf['cpf'])
+		->setEmail($value['email'])
+		->setEndereco($value['endereco'])
+		->setNumero($value['numer'])
+		->setComplemento($value['complemento'])
+		->setBairro($value['bairro'])
+		->setCidade($value['cidade'])
+		->setEstado($value['estado'])
+		->setCep($value['cep'])
+		->setClassificacao($value['classificacao']);
+		
+	}else{
+		$clientes[$key] = new PessoaJuridica();
+		$clientes[$key]->setId($value['id'])
+		->setNome($value['nome'])
+		->setCNPJ($value['cnpj'])
+		->setClassificacao($value['classificacao']);
 	}
-
-	for ($i=6; $i <= 10; $i++) { 
-		${"cliente".$i} = new RW940\Cliente\Types\PessoaJuridica();
-		${"cliente".$i}->setId("$i")
-		->setNome("Cliente $i")
-		->setCNPJ("42.169.422/0001-$i")
-		->setEmail("cliente$i@dominio$i.com.br")
-		->setEndereco("Rua $i")
-		->setNumero("00$i")
-		->setComplemento("Casa")
-		->setBairro("bairro $i")
-		->setCidade("cidade $i")
-		->setEstado("UF$i")
-		->setCep("00.000-0$i")
-		->setClassificacao(rand(0,5))
-		->setEnderecoCobranca("Rua $i")
-		->setNumeroCobranca("00$i")
-		->setComplementoCobranca("Casa")
-		->setBairroCobranca("bairro $i")
-		->setCidadeCobranca("cidade $i")
-		->setEstadoCobranca("UF$i")
-		->setCepCobranca("00.000-0$i");
-		$arrayClientes[] = ${"cliente".$i};
-	}
-/*
-CRIAR OS CADASTROS FICTICIOS DOS CLINETES
-*/
-
-
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
